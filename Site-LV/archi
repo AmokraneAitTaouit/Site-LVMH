@@ -1,0 +1,83 @@
+// Fonction pour ajouter un employé
+function addEmployee(employee) {
+    fetch('http://votre-api-url/employees', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(employee),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+// Fonction pour supprimer un employé
+function deleteEmployee(employeeId) {
+    fetch(`http://votre-api-url/employees/${employeeId}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Employee deleted:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Employé</title>
+    <link rel="stylesheet" href="rh_employee.css">
+</head>
+<body>
+    <h1>Ajouter un Employé</h1>
+    <form id="addEmployeeForm">
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="position">Poste:</label>
+        <input type="text" id="position" name="position" required>
+        <br>
+        <button type="submit">Ajouter</button>
+    </form>
+    <script src="rh_employee.js"></script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer un Employé</title>
+    <link rel="stylesheet" href="rh_employee.css">
+</head>
+<body>
+    <h1>Supprimer un Employé</h1>
+    <form id="deleteEmployeeForm">
+        <label for="employeeId">ID de l'employé:</label>
+        <input type="text" id="employeeId" name="employeeId" required>
+        <br>
+        <button type="submit">Supprimer</button>
+    </form>
+    <script src="rh_employee.js"></script>
+</body>
+</html>
